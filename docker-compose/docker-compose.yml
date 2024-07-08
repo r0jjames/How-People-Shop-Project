@@ -1,0 +1,29 @@
+services:
+  customersdb:
+    container_name: customersdb
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: customersdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
+#  customers_experience:
+#    image: "rojcarranza/customersexperience:s1"
+#    container_name: customers_experience-ms
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      SPRING_APPLICATION_NAME: "customers_experience"
+#      SPRING_DATASOURCE_URL: "jdbc:mysql://customersdb:3306/customersdb"
+#    depends_on:
+#      accountsdb:
+#        condition: service_healthy
+#    extends:
+#      file: common-config.yml
+#      service: microservice-config-server-config
+
+networks:
+  ikea:
+    driver: "bridge"
