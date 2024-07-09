@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -38,6 +39,12 @@ public class CustomerExperienceServiceImpl implements ICustomerExperienceService
     public List<CustomerExperienceInsightsDto> getAllCustomerExperienceInsights() {
         List<CustomerExperienceInsights> customerExperienceInsights = customerExperienceInsightsRepository.findAll();
         return CustomerExperienceMapper.mapToCustomerExperienceInsightDtoList(customerExperienceInsights);
+    }
+    public List<CustomerExperienceInsightsDto> getAllDistinctCustomerExperienceInsights() {
+        List<String> distinctInsights = customerExperienceInsightsRepository.findAllDistinctInsights();
+        return distinctInsights.stream()
+                .map(CustomerExperienceInsightsDto::new)
+                .collect(Collectors.toList());
     }
 
 }

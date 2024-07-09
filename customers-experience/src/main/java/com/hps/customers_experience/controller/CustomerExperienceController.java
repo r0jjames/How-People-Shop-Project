@@ -25,15 +25,9 @@ public class CustomerExperienceController {
         return ResponseEntity.ok(customerExperiences);
     }
 
-//    @GetMapping("/customer/{customerId}")
-//    public ResponseEntity<CustomerExperiencesDto> getExperiencesByCustomerId(@PathVariable Long customerId) {
-//        CustomerExperiencesDto customerExperiences = service.getExperiencesByCustomerId(customerId);
-//        return ResponseEntity.ok(customerExperiences);
-//    }
-
     @GetMapping("/insights")
     public ResponseEntity<List<CustomerExperienceInsightsDto>> getAllCustomerExperienceInsights() {
-        List<CustomerExperienceInsightsDto> customerExperienceInsightsDtoList = service.getAllCustomerExperienceInsights();
+        List<CustomerExperienceInsightsDto> customerExperienceInsightsDtoList = service.getAllDistinctCustomerExperienceInsights();
         return ResponseEntity.ok(customerExperienceInsightsDtoList);
     }
 }
