@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/customer", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/api/customers", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class CustomerExperienceController {
 
     @Autowired

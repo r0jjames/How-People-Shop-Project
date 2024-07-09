@@ -61,6 +61,7 @@ The HPS Data Model captures the various entities and their relationships involve
 | **Journey Phases**        | Represents different phases of the customer journey.                                               |
 | **Places of Purchase**    | Captures the place of purchase, either Store or Online.                                             |
 | **Customer Experiences**  | Links customer interactions with various aspects of their shopping journey.                         |
+| **Customer Experience Insights**      | Stores insights related to customer experiences.       
 | **Product Insights**      | Stores insights related to product clusters and their triggers.                                     |
 
 
