@@ -1,4 +1,4 @@
-# How People Shop (HPS) Product - Assignment
+# How People Shop (HPS) Product - Technical Assignment
 
 ## Overview
 
@@ -18,7 +18,7 @@ Develop a product that continuously collects data on people's shopping behaviors
 ## Table of Contents
 
 1. [Architecture Diagram](#architecture-diagram)
-2. [Sequence Diagram](#sequence-diagram)
+2. [Components Communication Flow](#sequence-diagram)
 3. [Unified Data Model](#unified-data-model)
 4. [Technologies and Tools Integration](#technologies-and-tools-integration)
     - [Core Microservices](#core-microservices)
@@ -31,9 +31,10 @@ Develop a product that continuously collects data on people's shopping behaviors
     - [Handling Structured and Unstructured Data](#handling-structured-and-unstructured-data)
     - [Scalability](#scalability)
     - [Trigger Mechanisms](#trigger-mechanisms)
-
-7. [How to Run the Project](#how-to-run-the-project)
-8. [Glossary of Terms](#glossary-of-terms)
+7.  [Challenges/Concerns and Resolutions](#challengesconcerns-and-resolutions)
+8.  [Coffee Consumption Calculation](#coffee-consumption-calculation)
+9.  [How to Run the Project](#how-to-run-the-project)
+8.  [Contact](#contact)
 
 ## Architecture Diagram
 
@@ -141,59 +142,150 @@ The HPS Data Model captures the various entities and their relationships involve
 | **API Gateway**       | Azure API Management                                                                                   | Manage and secure APIs.                                                                                                                                  |
 | **Webhook Integration** | Webhooks                                                                                             | Listen for specific events and invoke data ingestion processes.                                                                                          |
 
+## Challenges/Concerns and Resolutions
+
+| Concern                                                  | Resolution                                                                                                   |
+|----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| **API Gateway Performance and Reliability**               | Implement load balancing, auto-scaling, and comprehensive monitoring. Perform regular stress testing.         |
+| **Security and Access Control**                          | Use Azure Active Directory for role-based access control. Regularly audit permissions and use Azure Key Vault for sensitive information. |
+| **Scalability of Back-End Services**                     | Implement horizontal scaling using Kubernetes auto-scaling features. Monitor resource allocation using Prometheus and Grafana. |
+| **Observability and Monitoring**                         | Integrate Elastic Search, Prometheus, and Grafana for logging, monitoring, and visualization. Set up alerts for anomalies. |
+| **Data Consistency and Integrity**                       | Use data synchronization mechanisms and Azure Synapse Analytics. Perform regular data integrity checks and backups. |
+| **Deployment and CI/CD**                                 | Use Azure Pipelines for automated CI/CD processes. Implement Helm for managing Kubernetes deployments and ensure rollback mechanisms. |
+| **Autoscaling Complexity**                               | Configure Kubernetes autoscaling policies carefully. Monitor the interactions between different services.       |
+| **Inter-Service Communication**                          | Implement robust inter-service communication mechanisms. Consider using a service mesh like Istio for traffic management and monitoring. |
+
+## Coffee Consumption Calculation
+
+Assuming each member of the HPS product team consumes a certain number of cups of coffee each day and knowing the length of the sprint and team size, we can calculate the total coffee consumption.
+
+Let's define some variables:
+
+- Number of team members = 10 (assumption)
+- Cups of coffee per person per day = 3 (assumption)
+- Number of working days per sprint = 10 (2-week sprint)
+
+Total coffee consumption per sprint:
+
+Total Coffee Consumption = Number of team members × Cups of coffee per person per day × Number of working days per sprint
+
+Total Coffee Consumption = 10 × 3 × 10 = 300 cups
+
+The HPS product team consumes 300 cups of coffee each sprint.
 
 
 ## How to Run the Project
 
 ### Prerequisites
 
-- Java JDK 11+
-- Node.js
+- Java JDK 17+
 - Docker
-- Azure CLI
-- Kubernetes CLI (kubectl)
 - Maven
 
 ### Steps
 
-1. **Clone the repository:**
+
+## How to Run
+
+1. Clone the repository:
     ```bash
-    git clone https://github.com/your-repo/hps-product.git
-    cd hps-product
+    git clone https://github.com/r0jjames/IKEA-How-People-Shop-Project.git
+    cd customers-experience
     ```
 
-2. **Build the backend services:**
+2. Build the project:
     ```bash
-    cd backend
-    mvn clean install
+    ./mvnw clean install
     ```
 
-3. **Build the frontend application:**
+3. Run the application:
     ```bash
-    cd frontend
-    npm install
-    npm run build
+    ./mvnw spring-boot:run
     ```
+4. The application uses OpenAPI (Swagger) for API documentation. Once the application is running, you can access the documentation UI at: http://localhost:8080/swagger-ui.html
 
-4. **Dockerize the services:**
-    ```bash
-    cd ..
-    docker-compose build
-    ```
+## API Endpoints
 
-5. **Deploy to Kubernetes:**
-    ```bash
-    kubectl apply -f kubernetes/
-    ```
+### Product Insights
 
-6. **Access the application:**
-    Open your browser and navigate to `http://<your-kubernetes-cluster-ip>`
+Retrieve insights on how people shop for different product clusters.
 
-## Glossary of Terms
+- **URL:** `/api/products/insights`
+- **Method:** `GET`
+- **Description:** Fetches all product insights.
 
-| **Term**                 | **Definition**                                                                                     |
-|--------------------------|-----------------------------------------------------------------------------------------------------|
-| **ETL (Extract, Transform, Load)** | A process in data warehousing responsible for pulling data out of the source systems and placing it into a data warehouse. |
-| **Microservices**        | An architectural style that structures an application as a collection of loosely coupled services.   |
-| **Kafka**                | A distributed streaming platform used to build real-time data pipelines and streaming applications.  |
-| **Serverless Computing** | A cloud-computing execution model where the cloud provider dynamically manages the allocation of machine resources. |
+#### Response
+
+```json
+[
+    {
+        "id": 1,
+        "productClusterId": 1,
+        "triggerId": 1,
+        "insight": "Quick Pickers are highly influenced by price reductions during sales events."
+    },
+    {
+        "id": 2,
+        "productClusterId": 2,
+        "triggerId": 2,
+        "insight": "Storage Solvers see an increase in demand during the back-to-school season."
+    }
+    ...
+]
+```
+### Customer Insights
+Retrieve insights on customer experiences.
+- **URL:** `/api/customers/insights`
+- **Method:** `GET`
+- **Description:** Fetches all customer experience insights.
+
+#### Response
+
+```json
+[
+    {
+        "insight": "Customer found the online browsing experience seamless and intuitive."
+    },
+    {
+        "insight": "Customer felt overwhelmed by too many options at the store."
+    }
+    ...
+]
+```
+
+### Customer Experiences
+Retrieve details on customer experiences.
+- **URL:** `/api/customers/experiences`
+- **Method:** `GET`
+- **Description:** Fetches all customer experiences..
+
+#### Response
+
+```json
+[
+  {
+    "id": 1,
+    "customerId": 1,
+    "customerName": "Alice Johnson",
+    "needType": "Replacement",
+    "missionType": "Solution Seeking",
+    "touchpointType": "Brand Website",
+    "journeyPhase": "Browsing",
+    "placeOfPurchase": "Store"
+  },
+  {
+    "id": 2,
+    "customerId": 2,
+    "customerName": "Bob Brown",
+    "needType": "Upgrade",
+    "missionType": "Recreational Shopping",
+    "touchpointType": "Store",
+    "journeyPhase": "Filtering",
+    "placeOfPurchase": "Online"
+  },
+    ...
+]
+```
+
+Contact
+For any inquiries or issues, please contact rojjamescarranza@gmail.com.

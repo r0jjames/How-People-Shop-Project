@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 		info = @Info(
 				title = "CustomerExperience Microservice API",
 				version = "1.0",
-				description = "API for retrieving customer experience information",
+				description = "API for retrieving customer experience and insights",
 				contact = @Contact(
 						name = "Roj",
 						url  = "",
