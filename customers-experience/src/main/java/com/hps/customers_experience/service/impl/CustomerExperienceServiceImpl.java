@@ -29,17 +29,12 @@ public class CustomerExperienceServiceImpl implements ICustomerExperienceService
 
 
     @Override
-    public CustomerExperiencesDto getExperiencesByCustomerId(Long customerId) {
-        Optional<CustomerExperiences> customerExperiences = customerExperiencesRepository.findById(customerId);
-        assert customerExperiences.orElse(null) != null;
-        return CustomerExperienceMapper.mapToCustomerExperienceDto(customerExperiences.orElse(null));
-    }
-
-    @Override
     public List<CustomerExperienceInsightsDto> getAllCustomerExperienceInsights() {
         List<CustomerExperienceInsights> customerExperienceInsights = customerExperienceInsightsRepository.findAll();
         return CustomerExperienceMapper.mapToCustomerExperienceInsightDtoList(customerExperienceInsights);
     }
+
+    @Override
     public List<CustomerExperienceInsightsDto> getAllDistinctCustomerExperienceInsights() {
         List<String> distinctInsights = customerExperienceInsightsRepository.findAllDistinctInsights();
         return distinctInsights.stream()

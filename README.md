@@ -51,6 +51,7 @@ Develop a product that continuously collects data on people's shopping behaviors
 
 The HPS Data Model captures the various entities and their relationships involved in understanding customer shopping experiences. The key tables and their relationships are as follows:
 
+
 | **Entity**                | **Description**                                                                                   |
 |---------------------------|---------------------------------------------------------------------------------------------------|
 | **Customers**             | Stores information about customers, including their name, email, and phone.                        |
@@ -64,6 +65,12 @@ The HPS Data Model captures the various entities and their relationships involve
 | **Customer Experiences**  | Links customer interactions with various aspects of their shopping journey.                         |
 | **Customer Experience Insights**      | Stores insights related to customer experiences.       
 | **Product Insights**      | Stores insights related to product clusters and their triggers.                                     |
+#### Sample Queries:
+| Query Description                          | SQL Query                                                                                               |
+|--------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| Retrieve Product Insights                   | ```SELECT pi.id AS insight_id, pc.name AS product_cluster, t.type AS trigger_type, pi.insight<br>FROM product_insights pi<br>JOIN product_clusters pc ON pi.product_cluster_id = pc.id<br>JOIN triggers t ON pi.trigger_id = t.id;``` |
+| Retrieve Customer Experiences              | ```SELECT ce.id AS experience_id, c.name AS customer_name, n.type AS need_type, m.type AS mission_type, tp.type AS touchpoint_type, jp.phase AS journey_phase, pp.type AS place_of_purchase<br>FROM customer_experiences ce<br>JOIN customers c ON ce.customer_id = c.id<br>JOIN needs n ON ce.need_id = n.id<br>JOIN missions m ON ce.mission_id = m.id<br>JOIN touchpoints tp ON ce.touchpoint_id = tp.id<br>JOIN journey_phases jp ON ce.journey_phase_id = jp.id<br>JOIN places_of_purchase pp ON ce.place_of_purchase_id = pp.id;``` |
+| Retrieve Customer Experience Insights      | ```SELECT cei.id AS insight_id, ce.id AS experience_id, cei.insight<br>FROM customer_experience_insights cei<br>JOIN customer_experiences ce ON cei.customer_experience_id = ce.id;``` |
 
 
 ## Technologies and Tools Integration
