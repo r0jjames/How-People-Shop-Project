@@ -11,7 +11,6 @@ import com.hps.customers_experience.service.ICustomerExperienceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,7 +25,6 @@ public class CustomerExperienceServiceImpl implements ICustomerExperienceService
         List<CustomerExperiences> customerExperiences = customerExperiencesRepository.findAll();
         return CustomerExperienceMapper.mapToCustomerExperienceDtoList(customerExperiences);
     }
-
 
     @Override
     public List<CustomerExperienceInsightsDto> getAllCustomerExperienceInsights() {

@@ -8,7 +8,6 @@ import java.util.List;
 public interface ICustomerExperienceService {
 
     List<CustomerExperiencesDto> getAllExperiences();
-    CustomerExperiencesDto getExperiencesByCustomerId(Long customerId);
     List<CustomerExperienceInsightsDto> getAllCustomerExperienceInsights();
     List<CustomerExperienceInsightsDto> getAllDistinctCustomerExperienceInsights();
 }
