@@ -60,8 +60,11 @@ The proposal will be deemed successful if the following criteria are met:
 11. [Contact](#contact)
 
 ## Architecture Diagram
-
+#### End-to-End:
 ![Architecture Diagram](diagrams/Architecture_Diagram.png)
+#### Frontend:
+![Frontend Diagram](diagrams/Frontend_Architecture.png)
+
 
 ## Components Communication flow
 ![Components](diagrams/Components.png)
@@ -95,7 +98,7 @@ The HPS Data Model captures the various entities and their relationships involve
 | Retrieve Customer Experiences              | ```SELECT ce.id AS experience_id, c.name AS customer_name, n.type AS need_type, m.type AS mission_type, tp.type AS touchpoint_type, jp.phase AS journey_phase, pp.type AS place_of_purchase FROM customer_experiences ce JOIN customers c ON ce.customer_id = c.id JOIN needs n ON ce.need_id = n.id JOIN missions m ON ce.mission_id = m.id JOIN touchpoints tp ON ce.touchpoint_id = tp.id JOIN journey_phases jp ON ce.journey_phase_id = jp.id JOIN places_of_purchase pp ON ce.place_of_purchase_id = pp.id;``` |
 | Retrieve Customer Experience Insights      | ```SELECT cei.id AS insight_id, ce.id AS experience_id, cei.insight FROM customer_experience_insights cei JOIN customer_experiences ce ON cei.customer_experience_id = ce.id;``` |
 
-
+![UI Dashboard](diagrams/UI_Dashboard.png)
 ## Technologies and Tools Integration
 
 ### Core Microservices
