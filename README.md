@@ -55,8 +55,9 @@ The proposal will be deemed successful if the following criteria are met:
     - [Trigger Mechanisms](#trigger-mechanisms)
 7.  [Challenges/Concerns and Resolutions](#challengesconcerns-and-resolutions)
 8.  [Coffee Consumption Calculation](#coffee-consumption-calculation)
-9.  [How to Run the Project](#how-to-run-the-project)
-8.  [Contact](#contact)
+9.  [Time Estimates for Technical Assignments](#Time-Estimates-for-Technical-Assignments)
+10. [How to Run the Project](#how-to-run-the-project)
+11. [Contact](#contact)
 
 ## Architecture Diagram
 
@@ -202,6 +203,20 @@ Total Coffee Consumption = 10 × 3 × 10 = 300 cups
 
 The HPS product team consumes 300 cups of coffee each sprint.
 
+# Time Estimates for Technical Assignments
+
+| Assignment Task                                 | Time Estimate   |
+|-------------------------------------------------|-----------------|
+| Solo brainstorming with my pen and notebook     | 1-3 hours       |
+| Sketching Architecture Diagrams                 | 3-5 hours       |
+| Creating customer experience Restful APIs       | 2-3 hours       |
+| HPS Unified Data Model + SQL Queries            | 2-3 hours       |
+| Technical Specification                         | 1-2 hours       |
+| Challenges/Concerns + Calculation of cups of coffee | 1-2 hours    |
+| Thinking & Apply improvements                   | 1-2 hours       |
+| Document everything in README.md file           | 1-2 hours       |
+
+**Total Estimated Time:** 12-22 hours
 
 ## How to Run the Project
 
