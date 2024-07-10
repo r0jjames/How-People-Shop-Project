@@ -1,12 +1,34 @@
 # How People Shop (HPS) Product - Technical Assignment
 
-## Overview
+## Summary
 
 The "How People Shop" (HPS) product aims to build a digital, web-based solution to collect, store, catalogue, and share insights into customer shopping experiences. This product will enable decision-makers within IKEA to understand consumer behavior, enhancing the IKEA customer experience and driving consumer-centric decision-making.
 
-<!-- ## Vision
+## Background
 
-Develop a product that continuously collects data on people's shopping behaviors, interactions, and engagements with retailers and platforms offering home furnishing products and services. This product will enable innovation, expansion, and the development of IKEA's omnichannel experience. -->
+Understanding customer shopping behavior is essential for IKEA to enhance the customer experience and drive consumer-centric decision-making. This product will collect and analyze data on shopping behaviors, interactions, and engagements with home furnishing products and services, enabling IKEA to innovate and expand its omnichannel experience.
+
+<!-- ## Problem
+
+The primary problem addressed by this design doc is the lack of a centralized, digital solution for collecting, storing, and analyzing customer shopping experiences. The constraints include ensuring data privacy, handling large volumes of data, and providing real-time insights. Solving this problem is crucial for driving consumer-centric decision-making and enhancing the IKEA customer experience. -->
+## Design
+
+The HPS product will be implemented as a web-based solution with multiple microservices for data collection, processing, and insights generation. The architecture includes core microservices, data processing and storage solutions, and observability and security measures.
+
+- **Architecture**
+- **Component Communication flow**
+- **Data Model**
+- **Technologies Integration**
+- **Considerations**
+
+## Definition of Success
+
+The proposal will be deemed successful if the following criteria are met:
+
+- Accurate collection and storage of customer shopping data
+- Efficient processing and real-time insights generation
+- Secure and scalable system architecture
+- Positive feedback from decision-makers within IKEA on the usability and insights provided by the product.
 
 ## Goals
 
@@ -44,7 +66,7 @@ Develop a product that continuously collects data on people's shopping behaviors
 ![Components](diagrams/Components.png)
 ![Sequence Diagram](diagrams/Sequence_Diagram.png)
 
-## Data Model
+## Unified Data Model
 
 ![Unified Data Model](diagrams/Data_Model.png)
 #### Descriptions:
@@ -199,17 +221,21 @@ The HPS product team consumes 300 cups of coffee each sprint.
     git clone https://github.com/r0jjames/IKEA-How-People-Shop-Project.git
     cd customers-experience
     ```
-
-2. Build the project:
+2. Run DB in the Docker container:
+    ```bash
+    cd docker-compose
+    docker compose up
+    ```
+3. Build the project:
     ```bash
     ./mvnw clean install
     ```
 
-3. Run the application:
+4. Run the application:
     ```bash
     ./mvnw spring-boot:run
     ```
-4. The application uses OpenAPI (Swagger) for API documentation. Once the application is running, you can access the documentation UI at: http://localhost:8080/swagger-ui.html
+5. The application uses OpenAPI for API documentation and Testing of APIs. Once the application is running, you can access the documentation UI at: http://localhost:8080/swagger-ui.html
 
 ## API Endpoints
 
@@ -221,7 +247,7 @@ Retrieve insights on how people shop for different product clusters.
 - **Method:** `GET`
 - **Description:** Fetches all product insights.
 
-#### Response
+#### Sample Response:
 
 ```json
 [
@@ -237,7 +263,7 @@ Retrieve insights on how people shop for different product clusters.
         "triggerId": 2,
         "insight": "Storage Solvers see an increase in demand during the back-to-school season."
     }
-    ...
+    
 ]
 ```
 ### Customer Insights
@@ -246,7 +272,7 @@ Retrieve insights on customer experiences.
 - **Method:** `GET`
 - **Description:** Fetches all customer experience insights.
 
-#### Response
+#### Sample Response:
 
 ```json
 [
@@ -256,7 +282,7 @@ Retrieve insights on customer experiences.
     {
         "insight": "Customer felt overwhelmed by too many options at the store."
     }
-    ...
+    
 ]
 ```
 
@@ -264,9 +290,9 @@ Retrieve insights on customer experiences.
 Retrieve details on customer experiences.
 - **URL:** `/api/customers/experiences`
 - **Method:** `GET`
-- **Description:** Fetches all customer experiences..
+- **Description:** Fetches all customer experiences.
 
-#### Response
+#### Sample Response:
 
 ```json
 [
@@ -290,9 +316,9 @@ Retrieve details on customer experiences.
     "journeyPhase": "Filtering",
     "placeOfPurchase": "Online"
   },
-    ...
+    
 ]
 ```
 
-Contact
-For any inquiries or issues, please contact rojjamescarranza@gmail.com.
+# Contact
+For any inquiries or issues, please email: rojjamescarranza@gmail.com.
