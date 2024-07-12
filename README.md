@@ -208,10 +208,10 @@ We will assume the average coffee consumption and working days per sprint for ea
 | **Total**          | **10**           | -                             | **20 + 20 + 240 = 280 cups**                     |
 
 
-**Conclusion**: The HPS product team consumes a total of 280 cups of coffee each sprint.
+**Conclusion**: The HPS product team consumes a total of 280 cups of coffee each sprint. <br>
+***But wait... the team also needs some champagne! 🍾🎉 For celebrating team collaboration and successful deliveries!***
 
-
-# Time Estimates for Technical Assignments
+## Time Estimates for Technical Assignments
 
 | Assignment Task                                 | Time Estimate   |
 |-------------------------------------------------|-----------------|
