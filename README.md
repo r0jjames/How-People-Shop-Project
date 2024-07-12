@@ -190,36 +190,41 @@ The HPS Data Model captures the various entities and their relationships involve
 
 ## Coffee Consumption Calculation
 
-Assuming each member of the HPS product team consumes a certain number of cups of coffee each day and knowing the length of the sprint and team size, we can calculate the total coffee consumption.
+For simplicity, let's assume the following composition for the HPS product team:
 
-Let's define some variables:
+- 1 Product Owner
+- 1 Scrum Master
+- 8 Development Team members
 
-- Number of team members = 10 (assumption)
-- Cups of coffee per person per day = 3 (assumption)
-- Number of working days per sprint = 10 (2-week sprint)
+We will assume the average coffee consumption and working days per sprint for each role. Here’s the breakdown:
 
-Total coffee consumption per sprint:
+**Number of working days per sprint**: 10 (2-week sprint)
 
-Total Coffee Consumption = Number of team members × Cups of coffee per person per day × Number of working days per sprint
+| Role               | Number of People | Average Cups of Coffee per Day | Total Cups of Coffee per Sprint                  |
+|--------------------|------------------|-------------------------------|--------------------------------------------------|
+| Product Owner      | 1                | 2                             | 1 × 2 cups/day × 10 days = 20 cups               |
+| Scrum Master       | 1                | 2                             | 1 × 2 cups/day × 10 days = 20 cups               |
+| Development Team   | 8                | 3                             | 8 × 3 cups/day × 10 days = 240 cups              |
+| **Total**          | **10**           | -                             | **20 + 20 + 240 = 280 cups**                     |
 
-Total Coffee Consumption = 10 × 3 × 10 = 300 cups
 
-The HPS product team consumes 300 cups of coffee each sprint.
+**Conclusion**: The HPS product team consumes a total of 280 cups of coffee each sprint.
+
 
 # Time Estimates for Technical Assignments
 
 | Assignment Task                                 | Time Estimate   |
 |-------------------------------------------------|-----------------|
-| Solo brainstorming with my pen and notebook     | 1-3 hours       |
-| Sketching Architecture Diagrams                 | 3-5 hours       |
+| Solo brainstorming with my pen and notebook     | 1-2 hours       |
+| Sketching Architecture Diagrams                 | 4-5 hours       |
 | Creating customer experience Restful APIs       | 2-3 hours       |
-| HPS Unified Data Model + SQL Queries            | 2-3 hours       |
+| HPS Unified Data Model + SQL Queries            | 1-2 hours       |
 | Technical Specification                         | 1-2 hours       |
 | Challenges/Concerns + Calculation of cups of coffee | 1-2 hours    |
 | Thinking & Apply improvements                   | 1-2 hours       |
 | Document everything in README.md file           | 1-2 hours       |
 
-**Total Estimated Time:** 12-22 hours
+**Total Estimated Time:** 12-20 hours
 
 ## How to Run the Project
 
