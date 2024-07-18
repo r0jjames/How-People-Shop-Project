@@ -27,7 +27,8 @@ public class CustomerExperienceController {
 
     @GetMapping("/insights")
     public ResponseEntity<List<CustomerExperienceInsightsDto>> getAllCustomerExperienceInsights() {
-        List<CustomerExperienceInsightsDto> customerExperienceInsightsDtoList = service.getAllDistinctCustomerExperienceInsights();
-        return ResponseEntity.ok(customerExperienceInsightsDtoList);
+        List<CustomerExperienceInsightsDto> insightsDtoList = service.getAllCustomerExperienceInsights();
+        return ResponseEntity.ok(insightsDtoList);
     }
+
 }

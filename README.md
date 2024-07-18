@@ -300,10 +300,19 @@ Retrieve insights on customer experiences.
 ```json
 [
     {
-        "insight": "Customer found the online browsing experience seamless and intuitive."
+        "customerExperienceId": 1,
+        "title": "Seamless Browsing Experience",
+        "description": "Customer found the online browsing experience seamless and intuitive."
     },
     {
-        "insight": "Customer felt overwhelmed by too many options at the store."
+        "customerExperienceId": 2,
+        "title": "Overwhelmed by Options",
+        "description": "Customer felt overwhelmed by too many options at the store."
+    },
+    {
+        "customerExperienceId": 3,
+        "title": "Easy Product Comparison",
+        "description": "Comparing products on the brand website was easy and helpful."
     }
     
 ]

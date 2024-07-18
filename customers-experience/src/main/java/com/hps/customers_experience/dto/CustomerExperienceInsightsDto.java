@@ -7,9 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 public class CustomerExperienceInsightsDto {
 
-//    private Long id;
-//    private CustomerExperiencesDto customerExperiences;
-    private String insight;
+    private Long customerExperienceId;
+    private String title;
+    private String description;
 
 }
 

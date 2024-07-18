@@ -9,5 +9,4 @@ public interface ICustomerExperienceService {
 
     List<CustomerExperiencesDto> getAllExperiences();
     List<CustomerExperienceInsightsDto> getAllCustomerExperienceInsights();
-    List<CustomerExperienceInsightsDto> getAllDistinctCustomerExperienceInsights();
 }

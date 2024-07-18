@@ -10,8 +10,13 @@ import com.hps.customers_experience.repository.CustomerExperiencesRepository;
 import com.hps.customers_experience.service.ICustomerExperienceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
+
+import static com.hps.customers_experience.mapper.CustomerExperienceMapper.mapToCustomerExperienceInsightDto;
 
 @Service
 @AllArgsConstructor
@@ -29,15 +34,18 @@ public class CustomerExperienceServiceImpl implements ICustomerExperienceService
     @Override
     public List<CustomerExperienceInsightsDto> getAllCustomerExperienceInsights() {
         List<CustomerExperienceInsights> customerExperienceInsights = customerExperienceInsightsRepository.findAll();
-        return CustomerExperienceMapper.mapToCustomerExperienceInsightDtoList(customerExperienceInsights);
+
+        // Group insights by customerExperienceId
+        Map<Long, CustomerExperienceInsightsDto> insightsMap = new LinkedHashMap<>();
+        for (CustomerExperienceInsights insights : customerExperienceInsights) {
+            Long customerExperienceId = insights.getCustomerExperiences().getId();
+            if (!insightsMap.containsKey(customerExperienceId)) {
+                insightsMap.put(customerExperienceId, mapToCustomerExperienceInsightDto(insights));
+            }
+        }
+
+        return new ArrayList<>(insightsMap.values());
     }
 
-    @Override
-    public List<CustomerExperienceInsightsDto> getAllDistinctCustomerExperienceInsights() {
-        List<String> distinctInsights = customerExperienceInsightsRepository.findAllDistinctInsights();
-        return distinctInsights.stream()
-                .map(CustomerExperienceInsightsDto::new)
-                .collect(Collectors.toList());
-    }
 
 }

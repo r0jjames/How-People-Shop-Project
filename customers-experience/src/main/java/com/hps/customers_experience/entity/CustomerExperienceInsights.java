@@ -17,9 +17,13 @@ public class CustomerExperienceInsights {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_experience_id", referencedColumnName = "id")
     private CustomerExperiences customerExperiences;
 
-    private String insight;
+    @Column(name = "title", nullable = false, length = 255)
+    private String title;
+
+    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
+    private String description;
 }

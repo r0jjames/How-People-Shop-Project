@@ -27,7 +27,9 @@ public class CustomerExperienceMapper {
 
     public static CustomerExperienceInsightsDto mapToCustomerExperienceInsightDto(CustomerExperienceInsights entity) {
         CustomerExperienceInsightsDto dto = new CustomerExperienceInsightsDto();
-        dto.setInsight(entity.getInsight());
+        dto.setCustomerExperienceId(entity.getCustomerExperiences().getId());
+        dto.setTitle(entity.getTitle());
+        dto.setDescription(entity.getDescription());
         return dto;
     }
 

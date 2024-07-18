@@ -26,6 +26,8 @@ JOIN places_of_purchase pp ON ce.place_of_purchase_id = pp.id;
 --- Retrieve Customer Experience Insights
 SELECT cei.id AS insight_id,
        ce.id AS experience_id,
-       cei.insight
+       cei.title AS title,
+       cei.description AS description
 FROM customer_experience_insights cei
-JOIN customer_experiences ce ON cei.customer_experience_id = ce.id;
+JOIN customer_experiences ce ON cei.customer_experience_id = ce.id
+GROUP BY cei.id, ce.id, cei.title, cei.description;

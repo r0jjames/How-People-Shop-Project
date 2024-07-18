@@ -88,7 +88,8 @@ CREATE TABLE IF NOT EXISTS `product_insights` (
 CREATE TABLE IF NOT EXISTS `customer_experience_insights` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `customer_experience_id` INT NOT NULL,
-    `insight` TEXT NOT NULL,
+    `title` VARCHAR(255) NOT NULL,
+    `description` TEXT NOT NULL,
 --    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 --    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`customer_experience_id`) REFERENCES `customer_experiences`(`id`)
@@ -175,14 +176,14 @@ INSERT INTO `product_insights` (`product_cluster_id`, `trigger_id`, `insight`) V
 (1, 6, 'Budget constraints affect Quick Pickers the most.');
 
 -- Customer Experience Insights
-INSERT INTO `customer_experience_insights` (`customer_experience_id`, `insight`) VALUES
-(1, 'Customer found the online browsing experience seamless and intuitive.'),
-(2, 'Customer felt overwhelmed by too many options at the store.'),
-(3, 'Comparing products on the brand website was easy and helpful.'),
-(4, 'Customer experienced long wait times during the committing phase at the store.'),
-(5, 'Customer appreciated the learning phase videos on social media.'),
-(6, 'Customer found the product descriptions during the exploration phase very detailed and informative.'),
-(7, 'Customer experienced issues with the checkout process online.'),
-(8, 'Customer found the exploration phase in-store very interactive.'),
-(9, 'Customer had a smooth completion phase with quick delivery online.'),
-(10, 'Customer appreciated the helpful staff during the store visit.');
+INSERT INTO `customer_experience_insights` (`customer_experience_id`, `title`, `description`) VALUES
+(1, 'Seamless Browsing Experience', 'Customer found the online browsing experience seamless and intuitive.'),
+(2, 'Overwhelmed by Options', 'Customer felt overwhelmed by too many options at the store.'),
+(3, 'Easy Product Comparison', 'Comparing products on the brand website was easy and helpful.'),
+(4, 'Long Wait Times', 'Customer experienced long wait times during the committing phase at the store.'),
+(5, 'Engaging Learning Phase', 'Customer appreciated the learning phase videos on social media.'),
+(6, 'Detailed Product Descriptions', 'Customer found the product descriptions during the exploration phase very detailed and informative.'),
+(7, 'Checkout Issues', 'Customer experienced issues with the checkout process online.'),
+(8, 'Interactive Exploration Phase', 'Customer found the exploration phase in-store very interactive.'),
+(9, 'Smooth Completion Phase', 'Customer had a smooth completion phase with quick delivery online.'),
+(10, 'Helpful Store Staff', 'Customer appreciated the helpful staff during the store visit.');
