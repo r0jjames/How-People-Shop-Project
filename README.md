@@ -2,32 +2,30 @@
 
 ## Summary
 
-The "How People Shop" (HPS) product aims to build a digital, web-based solution to collect, store, catalogue, and share insights into customer shopping experiences. This product will enable decision-makers within IKEA to understand consumer behavior, enhancing the IKEA customer experience and driving consumer-centric decision-making.
+The "How People Shop" (HPS) product is a web-based solution designed to collect, analyze, and share insights on customer shopping behaviors. This tool will support IKEA’s decision-making by providing valuable data on consumer interactions, enhancing the customer experience, and driving strategic decisions.
+decision-making.
 
 ## Background
 
-Understanding customer shopping behavior is essential for IKEA to enhance the customer experience and drive consumer-centric decision-making. This product will collect and analyze data on shopping behaviors, interactions, and engagements with home furnishing products and services, enabling IKEA to innovate and expand its omnichannel experience.
+Understanding customer shopping behaviors is crucial for improving IKEA’s customer experience and guiding data-driven decisions. The HPS product will gather and analyze data on shopping interactions with IKEA products and services to support an enhanced omnichannel experience.
 
-<!-- ## Problem
 
-The primary problem addressed by this design doc is the lack of a centralized, digital solution for collecting, storing, and analyzing customer shopping experiences. The constraints include ensuring data privacy, handling large volumes of data, and providing real-time insights. Solving this problem is crucial for driving consumer-centric decision-making and enhancing the IKEA customer experience. -->
 ## Design
 
-The HPS product will be implemented as a web-based solution with multiple microservices for data collection, processing, and insights generation. The architecture includes core microservices, data processing and storage solutions, and observability and security measures.
+The HPS product features a web-based architecture supported by microservices for retrieving analytics and insights generation. The design includes:
 
-- **Architecture**
-- **Component Communication flow**
-- **Data Model**
-- **Technologies Integration**
-- **Considerations**
+- **Architecture Diagram**
+- **Component Communications**
+- **Unified Data Model**
+- **Data Integrations**
 
 ## Definition of Success
 
-The proposal will be deemed successful if the following criteria are met:
+Success will be measured by the following criteria:
 
-- Accurate collection and storage of customer shopping data
+- Accurate data collection and storage of customer shopping data
 - Efficient processing and real-time insights generation
-- Secure and scalable system architecture
+- Secure and scalable architecture
 - Positive feedback from decision-makers within IKEA on the usability and insights provided by the product.
 
 ## Goals
@@ -66,8 +64,9 @@ The proposal will be deemed successful if the following criteria are met:
 ![Frontend Diagram](diagrams/Frontend_Architecture.png)
 
 
-## Components Communication flow
+#### Components:
 ![Components](diagrams/Components.png)
+#### Communication Flow:
 ![Sequence Diagram](diagrams/Sequence_Diagram.png)
 
 ## Unified Data Model
@@ -94,99 +93,112 @@ The HPS Data Model captures the various entities and their relationships involve
 #### Sample Queries:
 | Query Description                          | SQL Query                                                                                               |
 |--------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| Retrieve Product Insights                   | ```SELECT pi.id AS insight_id, pc.name AS product_cluster, t.type AS trigger_type, pi.insight FROM product_insights pi JOIN product_clusters pc ON pi.product_cluster_id = pc.id JOIN triggers t ON pi.trigger_id = t.id;``` |
+| Retrieve Product Insights                   | ```SELECT pi.id AS insight_id,pc.name AS product_cluster,t.type AS trigger_type,pi.insight FROM product_insights pi JOIN product_clusters pc ON pi.product_cluster_id = pc.id JOIN triggers t ON pi.trigger_id = t.id;``` |
 | Retrieve Customer Experiences              | ```SELECT ce.id AS experience_id, c.name AS customer_name, n.type AS need_type, m.type AS mission_type, tp.type AS touchpoint_type, jp.phase AS journey_phase, pp.type AS place_of_purchase FROM customer_experiences ce JOIN customers c ON ce.customer_id = c.id JOIN needs n ON ce.need_id = n.id JOIN missions m ON ce.mission_id = m.id JOIN touchpoints tp ON ce.touchpoint_id = tp.id JOIN journey_phases jp ON ce.journey_phase_id = jp.id JOIN places_of_purchase pp ON ce.place_of_purchase_id = pp.id;``` |
-| Retrieve Customer Experience Insights      | ```SELECT cei.id AS insight_id, ce.id AS experience_id, cei.insight FROM customer_experience_insights cei JOIN customer_experiences ce ON cei.customer_experience_id = ce.id;``` |
+| Retrieve Customer Experience Insights      | ```SELECT cei.id AS insight_id, ce.id AS experience_id, cei.title AS title, cei.description AS description FROM customer_experience_insights cei JOIN customer_experiences ce ON cei.customer_experience_id = ce.id GROUP BY cei.id, ce.id, cei.title, cei.description;``` |
 
-![UI Dashboard](diagrams/UI_Dashboard.png)
-## Technologies and Tools Integration
+<!-- ![UI Dashboard](diagrams/UI_Dashboard.png) -->
+## **Technologies Used**
 
-### Core Microservices
+### **Core Microservices**
 
-| **Aspect**                  | **Technologies**                                                                                 | **Specifications**                                                                                                                                      |
-|-----------------------------|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Customer Experience Service** | Java, Spring Boot, Azure Kubernetes Service (AKS), Azure Container Registry, Azure Active Directory (AAD) | Manages customers profiles, preferences, and shopping behavior data.                                                                                                      |
-| **Products Service**        | Java, Spring Boot, Azure Kubernetes Service (AKS), Azure Container Registry, Azure Active Directory (AAD) | Provide product-related data for analysis and recommendations.                                                                                                               |
-| **Insights Service**        | Java, Spring Boot, Azure Kubernetes Service (AKS), Azure Container Registry, Azure Active Directory (AAD) | Analyzes collected data to provide insights into customer behavior, needs, and trends.                                                                                                        |
+| **Aspect**                    | **Technologies**                                                                                                                                                     | **Specifications**                                                 |
+|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| **Customers Experience Service** | Java, Spring Boot, Azure Kubernetes Service (AKS), Azure Container Registry, Azure Active Directory (AAD)                                                            | Manages customer profiles, preferences, and shopping behavior data. |
+| **Products Service**            | Java, Spring Boot, Azure Kubernetes Service (AKS), Azure Container Registry, Azure Active Directory (AAD)                                                            | Provides product-related data for analysis and recommendations.    |
+| **Insights Service**            | Java, Spring Boot, Azure Kubernetes Service (AKS), Azure Container Registry, Azure Active Directory (AAD)                                                            | Analyzes data to provide insights into customer behavior, needs, and trends. |
+| **Searches Service**            | Java, Spring Boot, Azure Kubernetes Service (AKS), Azure Container Registry, Azure Active Directory (AAD)                                                            | Handles search operations and indexing to enable aggregated insights and trend searches. |
 
-### Data Processing and Storage
+### **Data Processing and Storage**
 
-| **Aspect**                  | **Technologies**                                                                                 | **Specifications**                                                                                                                                      |
-|-----------------------------|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Data Ingestion**          | Azure Data Factory                                                                              | Pull data from various sources.                                                                                                                          |
-| **Data Transformation**     | Azure Databricks                                                                                | Transform and process data within microservices.                                                                                                         |
-| **Data Storage**            | Azure Synapse Analytics, Azure Data Lake Storage, Elastic Search, SQL Database (Azure SQL Database) | Store structured and unstructured data, and index for efficient retrieval.                                                                                |
+| **Aspect**            | **Technologies**                                                | **Specifications**                                                     |
+|-----------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------|
+| **Data Ingestion**    | Azure Data Factory, Azure Stream Analytics                      | Ingests data from various sources including databases, APIs, and files; handles real-time data streaming. |
+| **Data Transformation** | Azure Databricks                                               | Transforms and processes data, including large-scale data cleaning and enrichment. |
+| **Data Storage**      | Azure Synapse Analytics, Azure Data Lake, Azure Data Warehouse, Elasticsearch Service | Stores structured and unstructured data; indexes for efficient retrieval and analysis. |
 
-### Observability and Data Quality
+### **Observability and Data Quality**
 
-| **Aspect**                  | **Technologies**                                                                                 | **Specifications**                                                                                                                                      |
-|-----------------------------|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Monitoring**              | Prometheus, Grafana                                                                             | Real-time monitoring and visualization.                                                                                                                  |
-| **Observability**           | Azure Monitor                                                                                   | Comprehensive monitoring and diagnostics.                                                                                                                |
-| **Data Quality**            | Azure Data Catalog                                                                              | Maintain data quality and governance.                                                                                                                    |
+| **Aspect**          | **Technologies**                  | **Specifications**                                         |
+|---------------------|-----------------------------------|------------------------------------------------------------|
+| **Monitoring**      | Prometheus, Grafana                | Real-time monitoring, alerting, and visualization for microservices and data pipelines. |
+| **Observability**   | Azure Monitor, Azure Application Insights | Comprehensive monitoring, diagnostics, and application performance management. |
+| **Data Quality**    | Azure Data Catalog, Azure Purview | Maintains data quality and governance; ensures data integrity and compliance. |
+| **Data Lineage**    | Azure Data Catalog, Azure Purview | Tracks the flow and transformations of data across the pipeline to understand data lineage and dependencies. |
+| **Logging**         | Azure Monitor Logs, ELK Stack      | Captures logs from data processing and ingestion to aid in troubleshooting and performance optimization. |
 
-### Security and Authentication
+### **Security and Authentication**
 
-| **Aspect**                  | **Technologies**                                                                                 | **Specifications**                                                                                                                                      |
-|-----------------------------|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Authentication**          | Azure Active Directory (AAD)                                                                    | Authenticate users and applications.                                                                                                                     |
-| **Authorization**           | Azure Active Directory (AAD)                                                                    | Implement role-based access control (RBAC).                                                                                                              |
-| **Secret Management**       | Azure Key Vault                                                                                 | Store and manage secrets securely.                                                                                                                       |
+| **Aspect**           | **Technologies**                 | **Specifications**                                     |
+|----------------------|----------------------------------|--------------------------------------------------------|
+| **Authentication**   | Azure Active Directory (AAD)     | Authenticates users and applications, ensuring secure access. |
+| **Authorization**    | Azure Active Directory (AAD)     | Implements role-based access control (RBAC) to manage permissions. |
+| **Secret Management**| Azure Key Vault                   | Stores and manages secrets securely to protect sensitive information. |
+| **Data Encryption**  | Azure Key Vault, Azure Storage Encryption | Encrypts data at rest and in transit to safeguard against unauthorized access. |
+| **Data Masking**     | Azure Data Factory, Azure SQL Database | Applies data masking to obscure sensitive information from unauthorized users. |
+| **Access Control**   | Azure Active Directory (AAD), Azure Managed Identities | Controls access to data based on user roles and service identities. |
 
-## Data Flow and Integration
+### **Data Flow and Integration**
 
-| **Step**                   | **Description**                                                                                   |
-|----------------------------|---------------------------------------------------------------------------------------------------|
-| **Data Ingestion**         | Use Azure Data Factory to pull data from various sources (databases, APIs, files). Stream real-time data through Apache Kafka to appropriate microservices. |
-| **Data Transformation**    | Use Azure Databricks for transforming and processing data within microservices
+**Lifecycle of Data Management**
+
+| **Step**              | **Description**                                                                                             |
+|-----------------------|-------------------------------------------------------------------------------------------------------------|
+| **Data Ingestion**    | Use Azure Data Factory for batch data ingestion from various sources and Azure Stream Analytics for real-time data streaming. |
+| **Data Transformation** | Utilize Azure Databricks for data transformation and processing.                                           |
+| **Data Storage**      | Store data in Azure Synapse Analytics for structured data and Azure Data Lake for unstructured data.          |
+| **Data Processing**   | Azure Synapse Analytics and Azure Databricks for data extraction, transformation, and loading.                |
+
+### **Handling Structured and Unstructured Data**
+
+| **Aspect**                  | **Technologies**                     | **Specifications**                                  |
+|-----------------------------|--------------------------------------|-----------------------------------------------------|
+| **Data Storage**            | Azure Data Lake, Azure Synapse Analytics, Azure SQL Database | Stores structured and unstructured data.           |
+| **Data Processing**         | Azure Databricks                     | Processes and analyzes large volumes of data.      |
+| **Indexing and Search**     | Elasticsearch Service                | Indexes and searches unstructured data for efficient retrieval. |
+
+### **Scalability**
+
+**Scalability of Data Processing and Ingestion**
+
+| **Aspect**                  | **Technologies**                           | **Specifications**                                      |
+|-----------------------------|--------------------------------------------|---------------------------------------------------------|
+| **Data Ingestion Scalability** | Azure Data Factory, Azure Stream Analytics | Scales ingestion processes to handle large volumes of data, both batch and real-time. |
+| **Data Processing Scalability** | Azure Databricks                        | Provides distributed data processing and analysis to handle large-scale data efficiently. |
+| **Data Storage Scalability**   | Azure Synapse Analytics, Azure Data Lake | Scales data storage to accommodate growing data volumes and supports efficient querying and analysis. |
+
+**General Scalability**
+
+| **Aspect**             | **Technologies**                           | **Specifications**                                      |
+|------------------------|--------------------------------------------|---------------------------------------------------------|
+| **Horizontal Scaling** | Azure Kubernetes Service (AKS)             | Scales microservices horizontally based on demand.      |
+| **Load Balancing**     | Azure Load Balancer                        | Distributes traffic across multiple instances.          |
+| **Distributed Processing** | Azure Databricks                        | Enables distributed data processing and analysis.       |
+
+### **Trigger Mechanisms**
+
+| **Aspect**                   | **Technologies**                     | **Specifications**                                   |
+|------------------------------|--------------------------------------|------------------------------------------------------|
+| **Event-Driven Architecture** | Azure Functions, Azure Event Grid   | Implements serverless functions and event-driven processing to trigger data extraction and ingestion based on specific events or conditions. |
+| **Webhook Integration**       | Webhooks                             | Triggers data ingestion processes and other actions based on external events or changes. |
+| **Scheduled Triggers**        | Azure Logic Apps, Azure Automation   | Supports scheduled and recurring data extraction and ingestion tasks to automate workflows. |
+| **Streaming Data Triggers**   | Azure Stream Analytics               | Handles real-time data streaming and triggers processing workflows based on streaming data events. |
 
 
-## Data Processing
+## **Challenges/Concerns and Resolutions**
 
-### ETL Process
-
-| **Aspect**            | **Technologies**                                                                                       | **Specifications**                                                                                                                                      |
-|-----------------------|--------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Data Extraction**   | Azure Data Factory                                                                                    | Connect to various data sources, including databases, APIs, and file systems.                                                                            |
-| **Data Transformation** | Azure Databricks                                                                                     | Leverage for scalable data cleaning, normalization, and transformation.                                                                                   |
-| **Data Loading**      | Azure Synapse Analytics                                                                               | Store transformed data for efficient querying and analysis.                                                                                              |
-
-### Handling Structured and Unstructured Data
-
-| **Aspect**            | **Technologies**                                                                                       | **Specifications**                                                                                                                                      |
-|-----------------------|--------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Data Classification** | Azure Data Lake Storage                                                                              | Store both structured and unstructured data.                                                                                                             |
-| **Processing Frameworks** | Azure Databricks                                                                                   | Process and analyze large volumes of unstructured data.                                                                                                  |
-| **Indexing and Search** | Elastic Search                                                                                       | Efficient retrieval and indexing of unstructured data.                                                                                                   |
-
-### Scalability
-
-| **Aspect**            | **Technologies**                                                                                       | **Specifications**                                                                                                                                      |
-|-----------------------|--------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Horizontal Scaling** | Azure Kubernetes Service (AKS)                                                                        | Scale microservices horizontally based on load.                                                                                                          |
-| **Load Balancing**    | Azure Load Balancer                                                                                    | Distribute traffic across instances.                                                                                                                     |
-| **Distributed Processing** | Azure Databricks                                                                                  | Use for distributed data processing and analysis.                                                                                                        |
-
-### Trigger Mechanisms
-
-| **Aspect**            | **Technologies**                                                                                       | **Specifications**                                                                                                                                      |
-|-----------------------|--------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Event-Driven Architecture** | Azure Functions, Azure Event Grid                                                             | Handle various triggers using serverless functions and event grid.                                                                                       |
-| **API Gateway**       | Azure API Management                                                                                   | Manage and secure APIs.                                                                                                                                  |
-| **Webhook Integration** | Webhooks                                                                                             | Listen for specific events and invoke data ingestion processes.                                                                                          |
-
-## Challenges/Concerns and Resolutions
-
-| Concern                                                  | Resolution                                                                                                   |
-|----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| **API Gateway Performance and Reliability**               | Implement load balancing, auto-scaling, and comprehensive monitoring. Perform regular stress testing.         |
-| **Security and Access Control**                          | Use Azure Active Directory for role-based access control. Regularly audit permissions and use Azure Key Vault for sensitive information. |
-| **Scalability of Back-End Services**                     | Implement horizontal scaling using Kubernetes auto-scaling features. Monitor resource allocation using Prometheus and Grafana. |
-| **Observability and Monitoring**                         | Integrate Elastic Search, Prometheus, and Grafana for logging, monitoring, and visualization. Set up alerts for anomalies. |
-| **Data Consistency and Integrity**                       | Use data synchronization mechanisms and Azure Synapse Analytics. Perform regular data integrity checks and backups. |
-| **Deployment and CI/CD**                                 | Use Azure Pipelines for automated CI/CD processes. Implement Helm for managing Kubernetes deployments and ensure rollback mechanisms. |
-| **Autoscaling Complexity**                               | Configure Kubernetes autoscaling policies carefully. Monitor the interactions between different services.       |
-| **Inter-Service Communication**                          | Implement robust inter-service communication mechanisms. Consider using a service mesh like Istio for traffic management and monitoring. |
+| **Concern**                                             | **Resolution**                                                                                             |
+|---------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| **API Gateway Performance and Reliability**            | Implement load balancing, auto-scaling, and comprehensive monitoring. Perform regular stress testing to ensure performance under high traffic. |
+| **Security and Access Control**                         | Utilize Azure Active Directory (AAD) for robust role-based access control (RBAC). Regularly audit permissions and use Azure Key Vault for managing sensitive information and secrets. Implement encryption and data masking for additional security. |
+| **Scalability of Back-End Services**                    | Employ horizontal scaling using Azure Kubernetes Service (AKS) and configure auto-scaling features. Monitor resource allocation with Prometheus and Grafana. Ensure data storage solutions like Azure Synapse Analytics and Azure Data Lake can scale to handle large volumes of data. |
+| **Observability and Monitoring**                        | Integrate Elastic Search for indexing, Azure Monitor, Prometheus, and Grafana for logging, monitoring, and visualization. Set up alerts for anomalies and use Azure Data Catalog for tracking data lineage and quality. |
+| **Data Consistency and Integrity**                      | Implement data synchronization mechanisms and use Azure Synapse Analytics for consistency checks. Conduct regular data integrity checks, backups, and ensure data quality using Azure Data Catalog. |
+| **Deployment and CI/CD**                                | Utilize Azure Pipelines for automated CI/CD processes and Helm for managing Kubernetes deployments. Implement rollback mechanisms and ensure CI/CD pipelines are optimized for handling complex deployments. |
+| **Autoscaling Complexity**                              | Configure Kubernetes autoscaling policies carefully and monitor interactions between services to avoid issues. Utilize Azure Monitor and Prometheus for insights into scaling performance and efficiency. |
+| **Inter-Service Communication**                         | Develop robust inter-service communication mechanisms. Consider using a service mesh like Istio for advanced traffic management, monitoring, and observability. |
+| **Handling Various Trigger Mechanisms**                 | Implement event-driven architecture using Azure Functions and Azure Event Grid. Leverage Azure Logic Apps and Azure Automation for scheduled and recurring tasks. Ensure real-time data streaming with Azure Stream Analytics. |
+| **Data Ingestion and Processing Performance**            | Optimize data ingestion pipelines with Azure Data Factory and Azure Stream Analytics. Ensure efficient data processing and transformation with Azure Databricks. Regularly monitor performance and adjust configurations as needed. |
 
 ## Coffee Consumption Calculation
 
