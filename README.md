@@ -113,16 +113,16 @@ The HPS Data Model captures the various entities and their relationships involve
 
 | **Aspect**            | **Technologies**                                                | **Specifications**                                                     |
 |-----------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------|
-| **Data Ingestion**    | Azure Data Factory, Azure Stream Analytics                      | Ingests data from various sources including databases, APIs, and files; handles real-time data streaming. |
+| **Data Ingestion**    | Azure Data Factory (for batch), Azure Event Hubs (for high-throughput real-time), Azure IoT Hub (for IoT data)                      | Ingests data from various sources including databases, APIs, files. It handles high-throughput and real-time data streaming. |
 | **Data Transformation** | Azure Databricks                                               | Transforms and processes data, including large-scale data cleaning and enrichment. |
-| **Data Storage**      | Azure Synapse Analytics, Azure Data Lake, Azure Data Warehouse, Elasticsearch Service | Stores structured and unstructured data; indexes for efficient retrieval and analysis. |
+| **Data Storage**      | Azure Synapse Analytics, Azure Data Lake, Azure Data Warehouse, Elasticsearch | Stores structured and unstructured data; indexes for faster retrieval and analysis data. |
 
 ### **Observability and Data Quality**
 
 | **Aspect**          | **Technologies**                  | **Specifications**                                         |
 |---------------------|-----------------------------------|------------------------------------------------------------|
-| **Monitoring**      | Prometheus, Grafana                | Real-time monitoring, alerting, and visualization for microservices and data pipelines. |
-| **Observability**   | Azure Monitor, Azure Application Insights | Comprehensive monitoring, diagnostics, and application performance management. |
+| **Monitoring**      | Prometheus, Grafana, Azure Monitor               | Real-time monitoring, alerting, and visualization for microservices, data pipelines, and infrastructure. |
+| **Observability**   | Azure Monitor, Azure Application Insights | Comprehensive monitoring, diagnostics, alerts, and performance management for applications and infrastructure. |
 | **Data Quality**    | Azure Data Catalog, Azure Purview | Maintains data quality and governance; ensures data integrity and compliance. |
 | **Data Lineage**    | Azure Data Catalog, Azure Purview | Tracks the flow and transformations of data across the pipeline to understand data lineage and dependencies. |
 | **Logging**         | Azure Monitor Logs, ELK Stack      | Captures logs from data processing and ingestion to aid in troubleshooting and performance optimization. |
