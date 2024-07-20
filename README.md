@@ -66,7 +66,7 @@ Success will be measured by the following criteria:
 
 #### Components:
 ![Components](diagrams/Components.png)
-#### Communication Flow:
+#### Backend Communication Flow:
 ![Sequence Diagram](diagrams/Sequence_Diagram.png)
 
 ## Unified Data Model
