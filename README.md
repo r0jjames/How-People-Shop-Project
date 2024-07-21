@@ -38,12 +38,12 @@ Success will be measured by the following criteria:
 ## Table of Contents
 
 1. [Architecture Diagrams](#architecture-diagrams)
-    - [High-level Architecture](#High-level-Architecture)
-    - [Frontend Architecture](#Frontend-Architecture)
-    - [Components Detail](#Components-Detail)
-    - [Components Communication Flow](#Components-Communication-Flow)
+    - [High-level Architecture](#high-level-architecture)
+    - [Frontend Architecture](#frontend-architecture)
+    - [Components Detail](#components-detail)
+    - [Components Communication Flow](#components-communication-flow)
     - [Unified Data Model](#unified-data-model)
-2. [Project Demo: Customers Experience Insight Service](#Project-Demo:-Customers-Experience-Insight-Service)
+2. [Project Demo](#project-demo)
 3. [Technologies Used](#technologies-used)
     - [Core Microservices](#core-microservices)
     - [Data Processing and Storage](#data-processing-and-storage)
@@ -57,10 +57,10 @@ Success will be measured by the following criteria:
     - [Trigger Mechanisms](#trigger-mechanisms)
 5.  [Challenges/Concerns and Resolutions](#challengesconcerns-and-resolutions)
 6.  [Coffee Consumption Calculation](#coffee-consumption-calculation)
-7.  [Time Estimates for Technical Assignments](#Time-Estimates-for-Technical-Assignments)
+7.  [Time Estimates for Technical Assignments](#time-estimates-for-technical-assignments)
 
 
-## Architecture Diagram
+## **Architecture Diagrams**
 #### High-level Architecture
 ![Architecture Diagram](diagrams/Architecture_Diagram.png)
 #### Frontend Architecture
@@ -101,7 +101,9 @@ The HPS Data Model captures the various entities and their relationships involve
 
 <!-- ![UI Dashboard](diagrams/UI_Dashboard.png) -->
 
-## Project Demo: Customers Experience Insight Service
+##  **Project Demo**
+
+### Service:  Customers Experience Insight
 
 ### Prerequisites:
 
