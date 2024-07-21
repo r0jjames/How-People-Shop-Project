@@ -7,7 +7,7 @@ FROM product_insights pi
 JOIN product_clusters pc ON pi.product_cluster_id = pc.id
 JOIN triggers t ON pi.trigger_id = t.id;
 
---- Retrieve Customer Experiences
+-- Retrieve Customer Experiences
 SELECT ce.id AS experience_id,
        c.name AS customer_name,
        n.type AS need_type,
