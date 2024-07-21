@@ -37,39 +37,41 @@ Success will be measured by the following criteria:
 
 ## Table of Contents
 
-1. [Architecture Diagram](#architecture-diagram)
-2. [Components Communication Flow](#sequence-diagram)
-3. [Unified Data Model](#unified-data-model)
-4. [Technologies and Tools Integration](#technologies-and-tools-integration)
+1. [Architecture Diagrams](#architecture-diagrams)
+    - [High-level Architecture](#High-level-Architecture)
+    - [Frontend Architecture](#Frontend-Architecture)
+    - [Components Detail](#Components-Detail)
+    - [Components Communication Flow](#Components-Communication-Flow)
+    - [Unified Data Model](#unified-data-model)
+2. [Project Demo: Customers Experience Insight Service](#Project-Demo:-Customers-Experience-Insight-Service)
+3. [Technologies Used](#technologies-used)
     - [Core Microservices](#core-microservices)
     - [Data Processing and Storage](#data-processing-and-storage)
     - [Observability and Data Quality](#observability-and-data-quality)
     - [Security and Authentication](#security-and-authentication)
-5. [Data Flow and Integration](#data-flow-and-integration)
-6. [Data Processing](#data-processing)
+4. [Data Flow and Integration](#data-flow-and-integration)
+    - [Data Processing](#data-processing)
     - [ETL Process](#etl-process)
     - [Handling Structured and Unstructured Data](#handling-structured-and-unstructured-data)
     - [Scalability](#scalability)
     - [Trigger Mechanisms](#trigger-mechanisms)
-7.  [Challenges/Concerns and Resolutions](#challengesconcerns-and-resolutions)
-8.  [Coffee Consumption Calculation](#coffee-consumption-calculation)
-9.  [Time Estimates for Technical Assignments](#Time-Estimates-for-Technical-Assignments)
-10. [How to Run the Project](#how-to-run-the-project)
-11. [Contact](#contact)
+5.  [Challenges/Concerns and Resolutions](#challengesconcerns-and-resolutions)
+6.  [Coffee Consumption Calculation](#coffee-consumption-calculation)
+7.  [Time Estimates for Technical Assignments](#Time-Estimates-for-Technical-Assignments)
+
 
 ## Architecture Diagram
-#### End-to-End:
+#### High-level Architecture
 ![Architecture Diagram](diagrams/Architecture_Diagram.png)
-#### Frontend:
+#### Frontend Architecture
 ![Frontend Diagram](diagrams/Frontend_Architecture.png)
 
-
-#### Components:
+#### Components Detail
 ![Components](diagrams/Components.png)
-#### Backend Communication Flow:
+#### Components Communication Flow
 ![Sequence Diagram](diagrams/Sequence_Diagram.png)
 
-## Unified Data Model
+#### Unified Data Model
 
 ![Unified Data Model](diagrams/Data_Model.png)
 #### Descriptions:
@@ -98,6 +100,131 @@ The HPS Data Model captures the various entities and their relationships involve
 | Retrieve Customer Experience Insights      | ```SELECT cei.id AS insight_id, ce.id AS experience_id, cei.title AS title, cei.description AS description FROM customer_experience_insights cei JOIN customer_experiences ce ON cei.customer_experience_id = ce.id GROUP BY cei.id, ce.id, cei.title, cei.description;``` |
 
 <!-- ![UI Dashboard](diagrams/UI_Dashboard.png) -->
+
+## Project Demo: Customers Experience Insight Service
+
+### Prerequisites:
+
+- Java JDK 17+
+- Docker
+- Maven
+
+### Steps
+
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/r0jjames/IKEA-How-People-Shop-Project.git
+    cd customers-experience
+    ```
+2. Run DB in the Docker container:
+    ```bash
+    cd docker-compose
+    docker compose up
+    ```
+3. Build the project:
+    ```bash
+    ./mvnw clean install
+    ```
+
+4. Run the application:
+    ```bash
+    ./mvnw spring-boot:run
+    ```
+5. The application uses OpenAPI for API documentation and Testing of APIs. Once the application is running, you can access the documentation UI at: http://localhost:8080/swagger-ui.html
+
+### API Endpoints:
+
+### Product Insights
+
+Retrieve insights on how people shop for different product clusters.
+
+- **URL:** `/api/products/insights`
+- **Method:** `GET`
+- **Description:** Fetches all product insights.
+
+#### Sample Response:
+
+```json
+[
+    {
+        "id": 1,
+        "productClusterId": 1,
+        "triggerId": 1,
+        "insight": "Quick Pickers are highly influenced by price reductions during sales events."
+    },
+    {
+        "id": 2,
+        "productClusterId": 2,
+        "triggerId": 2,
+        "insight": "Storage Solvers see an increase in demand during the back-to-school season."
+    }
+    
+]
+```
+### Customer Insights
+Retrieve insights on customer experiences.
+- **URL:** `/api/customers/insights`
+- **Method:** `GET`
+- **Description:** Fetches all customer experience insights.
+
+#### Sample Response:
+
+```json
+[
+    {
+        "customerExperienceId": 1,
+        "title": "Seamless Browsing Experience",
+        "description": "Customer found the online browsing experience seamless and intuitive."
+    },
+    {
+        "customerExperienceId": 2,
+        "title": "Overwhelmed by Options",
+        "description": "Customer felt overwhelmed by too many options at the store."
+    },
+    {
+        "customerExperienceId": 3,
+        "title": "Easy Product Comparison",
+        "description": "Comparing products on the brand website was easy and helpful."
+    }
+    
+]
+```
+
+### Customer Experiences
+Retrieve details on customer experiences.
+- **URL:** `/api/customers/experiences`
+- **Method:** `GET`
+- **Description:** Fetches all customer experiences.
+
+#### Sample Response:
+
+```json
+[
+  {
+    "id": 1,
+    "customerId": 1,
+    "customerName": "Alice Johnson",
+    "needType": "Replacement",
+    "missionType": "Solution Seeking",
+    "touchpointType": "Brand Website",
+    "journeyPhase": "Browsing",
+    "placeOfPurchase": "Store"
+  },
+  {
+    "id": 2,
+    "customerId": 2,
+    "customerName": "Bob Brown",
+    "needType": "Upgrade",
+    "missionType": "Recreational Shopping",
+    "touchpointType": "Store",
+    "journeyPhase": "Filtering",
+    "placeOfPurchase": "Online"
+  },
+    
+]
+```
+
 ## **Technologies Used**
 
 ### **Core Microservices**
@@ -237,131 +364,7 @@ We will assume the average coffee consumption and working days per sprint for ea
 
 **Total Estimated Time:** 12-20 hours
 
-## How to Run the Project
 
-### Prerequisites
-
-- Java JDK 17+
-- Docker
-- Maven
-
-### Steps
-
-
-## How to Run
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/r0jjames/IKEA-How-People-Shop-Project.git
-    cd customers-experience
-    ```
-2. Run DB in the Docker container:
-    ```bash
-    cd docker-compose
-    docker compose up
-    ```
-3. Build the project:
-    ```bash
-    ./mvnw clean install
-    ```
-
-4. Run the application:
-    ```bash
-    ./mvnw spring-boot:run
-    ```
-5. The application uses OpenAPI for API documentation and Testing of APIs. Once the application is running, you can access the documentation UI at: http://localhost:8080/swagger-ui.html
-
-## API Endpoints
-
-### Product Insights
-
-Retrieve insights on how people shop for different product clusters.
-
-- **URL:** `/api/products/insights`
-- **Method:** `GET`
-- **Description:** Fetches all product insights.
-
-#### Sample Response:
-
-```json
-[
-    {
-        "id": 1,
-        "productClusterId": 1,
-        "triggerId": 1,
-        "insight": "Quick Pickers are highly influenced by price reductions during sales events."
-    },
-    {
-        "id": 2,
-        "productClusterId": 2,
-        "triggerId": 2,
-        "insight": "Storage Solvers see an increase in demand during the back-to-school season."
-    }
-    
-]
-```
-### Customer Insights
-Retrieve insights on customer experiences.
-- **URL:** `/api/customers/insights`
-- **Method:** `GET`
-- **Description:** Fetches all customer experience insights.
-
-#### Sample Response:
-
-```json
-[
-    {
-        "customerExperienceId": 1,
-        "title": "Seamless Browsing Experience",
-        "description": "Customer found the online browsing experience seamless and intuitive."
-    },
-    {
-        "customerExperienceId": 2,
-        "title": "Overwhelmed by Options",
-        "description": "Customer felt overwhelmed by too many options at the store."
-    },
-    {
-        "customerExperienceId": 3,
-        "title": "Easy Product Comparison",
-        "description": "Comparing products on the brand website was easy and helpful."
-    }
-    
-]
-```
-
-### Customer Experiences
-Retrieve details on customer experiences.
-- **URL:** `/api/customers/experiences`
-- **Method:** `GET`
-- **Description:** Fetches all customer experiences.
-
-#### Sample Response:
-
-```json
-[
-  {
-    "id": 1,
-    "customerId": 1,
-    "customerName": "Alice Johnson",
-    "needType": "Replacement",
-    "missionType": "Solution Seeking",
-    "touchpointType": "Brand Website",
-    "journeyPhase": "Browsing",
-    "placeOfPurchase": "Store"
-  },
-  {
-    "id": 2,
-    "customerId": 2,
-    "customerName": "Bob Brown",
-    "needType": "Upgrade",
-    "missionType": "Recreational Shopping",
-    "touchpointType": "Store",
-    "journeyPhase": "Filtering",
-    "placeOfPurchase": "Online"
-  },
-    
-]
-```
 
 # Contact
 For any inquiries or issues, please email: rojjamescarranza@gmail.com.
