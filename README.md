@@ -231,7 +231,7 @@ Retrieve details on customer experiences.
 
 ### **Core Microservices**
 
-| **Aspect**                    | **Technologies**                                                                                                                                                     | **Specifications**                                                 |
+| **Aspect**                    | **Technologies**                                                                                                                                                     | **Description**                                                 |
 |-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
 | **Customers Experience Service** | Java, Spring Boot, Azure Kubernetes Service (AKS), Azure Container Registry, Azure Active Directory (AAD)                                                            | Manages customer profiles, preferences, and shopping behavior data. |
 | **Products Service**            | Java, Spring Boot, Azure Kubernetes Service (AKS), Azure Container Registry, Azure Active Directory (AAD)                                                            | Provides product-related data for analysis and recommendations.    |
@@ -240,7 +240,7 @@ Retrieve details on customer experiences.
 
 ### **Data Processing and Storage**
 
-| **Aspect**            | **Technologies**                                                | **Specifications**                                                     |
+| **Aspect**            | **Technologies**                                                | **Description**                                                     |
 |-----------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------|
 | **Data Ingestion**    | Azure Data Factory (for batch), Azure Event Hubs (for high-throughput real-time), Azure IoT Hub (for IoT data)                      | Ingests data from various sources including databases, APIs, files. It handles high-throughput and real-time data streaming. |
 | **Data Transformation** | Azure Databricks                                               | Transforms and processes data, including large-scale data cleaning and enrichment. |
@@ -248,7 +248,7 @@ Retrieve details on customer experiences.
 
 ### **Observability and Data Quality**
 
-| **Aspect**          | **Technologies**                  | **Specifications**                                         |
+| **Aspect**          | **Technologies**                  | **Description**                                         |
 |---------------------|-----------------------------------|------------------------------------------------------------|
 | **Monitoring**      | Prometheus, Grafana, Azure Monitor               | Real-time monitoring, alerting, and visualization for microservices, data pipelines, and infrastructure. |
 | **Observability**   | Azure Monitor, Azure Application Insights | Comprehensive monitoring, diagnostics, alerts, and performance management for applications and infrastructure. |
@@ -258,7 +258,7 @@ Retrieve details on customer experiences.
 
 ### **Security and Authentication**
 
-| **Aspect**           | **Technologies**                 | **Specifications**                                     |
+| **Aspect**           | **Technologies**                 | **Description**                                     |
 |----------------------|----------------------------------|--------------------------------------------------------|
 | **Authentication**   | Azure Active Directory (AAD)     | Authenticates users and applications, ensuring secure access. |
 | **Authorization**    | Azure Active Directory (AAD)     | Implements role-based access control (RBAC) to manage permissions. |
@@ -280,7 +280,7 @@ Retrieve details on customer experiences.
 
 ### **Handling Structured and Unstructured Data**
 
-| **Aspect**                  | **Technologies**                     | **Specifications**                                  |
+| **Aspect**                  | **Technologies**                     | **Description**                                  |
 |-----------------------------|--------------------------------------|-----------------------------------------------------|
 | **Data Storage**            | Azure Data Lake, Azure Synapse Analytics, Azure SQL Database | Azure Data Lake for unstructured data, Azure Synapse Analytics for structured and semi-structured data, Azure SQL Database for transactional and operational needs.           |
 | **Data Processing**         | Azure Databricks                     | Processes and analyzes large volumes of data.      |
@@ -290,7 +290,7 @@ Retrieve details on customer experiences.
 
 **Scalability of Data Processing and Ingestion**
 
-| **Aspect**                  | **Technologies**                           | **Specifications**                                      |
+| **Aspect**                  | **Technologies**                           | **Description**                                      |
 |-----------------------------|--------------------------------------------|---------------------------------------------------------|
 | **Data Ingestion Scalability** | Azure Data Factory, Azure Stream Analytics | Scales batch and real-time data ingestion. Azure Data Factory handles batch processes, while Stream Analytics manages real-time data streams. |
 | **Data Processing Scalability** | Azure Databricks                        | Provides distributed processing with dynamic cluster scaling for large-scale data handling. |
@@ -298,7 +298,7 @@ Retrieve details on customer experiences.
 
 **General Scalability**
 
-| **Aspect**             | **Technologies**                           | **Specifications**                                      |
+| **Aspect**             | **Technologies**                           | **Description**                                      |
 |------------------------|--------------------------------------------|---------------------------------------------------------|
 | **Horizontal Scaling** | Azure Kubernetes Service (AKS)             | Scales microservices horizontally based on demand. Integrates with Azure Autoscale for dynamic scaling.      |
 | **Load Balancing**     | Azure Load Balancer                        | Distributes traffic across multiple instances to ensure high availability and reliability.          |
@@ -306,7 +306,7 @@ Retrieve details on customer experiences.
 
 ### **Trigger Mechanisms**
 
-| **Trigger Mechanism**                   | **Technologies**                     | **Specifications**                                   |
+| **Trigger Mechanism**                   | **Technologies**                     | **Description**                                   |
 |------------------------------|--------------------------------------|------------------------------------------------------|
 | **Event-Driven** | Azure Functions, Azure Event Grid   | Azure Functions: Executes code in response to events; suitable for serverless, event-based processing. Azure Event Grid: Routes events from various sources and integrates with other services for event-driven workflows.  eg. Azure Function can be used as a bridge between Event Grid and Data Factory. It can listen for events from Event Grid and then trigger a Data Factory pipeline. |
 | **Webhook Integration**       | Webhooks                             | 	When a specific event occurs, the source system sends an HTTP request (usually a POST) to a pre-configured URL, which can be an endpoint in another system. This enables real-time communication and integration between different systems. |
