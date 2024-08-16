@@ -1,0 +1,81 @@
+// title HPS Data Model
+// define tables
+customers [icon: user, color: yellow]{
+  id int pk
+  name string
+  email string
+  phone string
+  age int
+  gender string
+  location string
+}
+
+needs [icon: activity, color: red]{
+  id int pk
+  type string // Replacement, Upgrade, Remodel
+}
+
+product_clusters [icon: package, color: green]{
+  id int pk
+  name string // Quick Pickers, Storage Solvers, Lasting Comfort
+}
+
+triggers [icon: bell, color: orange]{
+  id int pk
+  type string // Price, Time, Season, Event, Retailer, Budget
+}
+
+missions [icon: target, color: purple]{
+  id int pk
+  type string // Solution Seeking, Recreational Shopping
+}
+
+touchpoints [icon: monitor, color: blue]{
+  id int pk
+  type string // Brand Website, Store, Social Media, Online Stores
+}
+
+journey_phases [icon: map, color: teal]{
+  id int pk
+  phase string // Browsing, Filtering, Comparing, Exploration, Learning, Committing, Completion
+}
+
+places_of_purchase [icon: shopping-cart, color: brown]{
+  id int pk
+  type string // Store, Online
+}
+
+customer_experiences [icon: smile, color: pink]{
+  id int pk
+  customer_id int fk
+  need_id int fk
+  mission_id int fk
+  touchpoint_id int fk
+  journey_phase_id int fk
+  place_of_purchase_id int fk
+}
+
+product_insights [icon: bar-chart, color: grey]{
+  id int pk
+  product_cluster_id int fk
+  trigger_id int fk
+  insight string
+}
+
+customer_experience_insights [icon: pie-chart, color: lightblue]{
+  id int pk
+  customer_experience_id int fk
+  title string
+  description string
+}
+// End of tables
+customer_experiences.customer_id > customers.id
+customer_experiences.need_id > needs.id
+customer_experiences.mission_id > missions.id
+customer_experiences.touchpoint_id > touchpoints.id
+customer_experiences.journey_phase_id > journey_phases.id
+customer_experiences.place_of_purchase_id > places_of_purchase.id
+product_insights.product_cluster_id > product_clusters.id
+product_insights.trigger_id > triggers.id
+customers.id <> product_clusters.id
+customer_experience_insights.customer_experience_id > customer_experiences.id

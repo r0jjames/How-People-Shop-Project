@@ -1,0 +1,61 @@
+title Sequence Diagram - “How People Shop” (HPS) Product
+
+// Define actors and their icons
+User [icon: user, color: blue]
+Frontend [icon: angular, color: lightblue]
+API Gateway [icon: azure-application-gateways, color: gray]
+Customers Experience Service [icon: k8s-pod, color: green]
+Products Service [icon: k8s-pod, color: orange]
+Insights Service [icon: k8s-pod, color: yellow]
+Analytics Engine [icon: cpu, color: teal]
+Data Lake [icon: database, color: darkblue]
+Data Warehouse [icon: database, color: darkgreen]
+Elasticsearch [icon: search, color: brown]
+
+// User interaction with Front-End UI
+User > Frontend: Perform actions (login, browse, filter, compare)
+Frontend > API Gateway: Send HTTP/HTTPS requests
+
+// API Gateway routes requests
+API Gateway > Customers Experience Service: Route to Customers Exp Service
+API Gateway > Products Service: Route to Products Service
+
+// User and Products Management
+Customers Experience Service > Insights Service: Request customers insights
+Customers Experience Service > Analytics Engine: Request customers behavior analysis
+
+Products Service > Insights Service: Request products insights
+Products Service > Analytics Engine: Request products recommendations
+
+// Data Processing and Analytics
+loop [label: Data processing, color: lightgray] {
+  Analytics Engine > Data Lake: Fetch raw data
+  Analytics Engine > Data Warehouse: Store processed data
+}
+
+// Insights Generation
+Insights Service > Data Warehouse: Query insights data
+Insights Service > Customers Experience Service: Send customer insights
+Insights Service > Products Service: Send products insights
+Products Service > Frontend: Send insights
+Frontend > User: Display insights How People Shop
+
+// Elasticsearch indexing and search capabilities
+Insights Service > Elasticsearch: Index insights data
+Elasticsearch > Elasticsearch: Index insights data
+
+Frontend > Elasticsearch: Provide search capabilities
+
+// Reporting and Business Intelligence
+par [label: Dashboard / Reporting, color: lightgray] {
+  Customers Experience Service > Elasticsearch: Access for business intelligence
+  Customers Experience Service > Elasticsearch: Access for reporting
+}
+
+// Fetching Insights
+User > Frontend: Search customer experience
+Frontend > API Gateway: Send search query
+API Gateway > Elasticsearch: Route search query
+Elasticsearch > API Gateway: Return search results
+API Gateway > Frontend: Send search results
+Frontend > User: Display search results

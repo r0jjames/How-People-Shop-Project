@@ -1,0 +1,61 @@
+
+Angular {
+HPS Client app [icon: azure-browser]
+}
+
+API GATEWAY {
+  APIM[icon: azure-api-management-services]
+}
+// Angular [icon: angular]
+HELM [icon: helm]
+CICD [label: "CI/CD"] {
+  Azure Pipelines [icon: rocketmq]
+}
+Azure Container Registry [icon: azure-container-registries]
+
+Azure Active Directory [icon: azure-active-directory]
+Azure Monitor [icon: azure-monitor]
+Azure Synapse Analytics [icon: azure-synapse-analytics]
+Azure Key Vault [icon: azure-key-vaults]
+Azure Data Warehouse [icon: azure-sql-data-warehouses]
+Azure Data Lake [icon: azure-data-lake-store-gen1]
+Azure Kubernetes Service [icon: azure-kubernetes-services]
+Virtual network [icon: azure-virtual-networks] {
+  Kubernetes cluster [icon: kubernetes]
+  Back-end services {
+    Pod1 [icon: box, label: "Customers Experience Service"]
+    Pod2 [icon: box, label: "Products Service"]
+    Pod3 [icon: box, label: "Insights Service"]
+    Pod4 [icon: box, label: "Searches Service"]
+  }
+  Observability and Monitoring {
+    Elastic search [icon: elasticsearch]
+    Prometheus [icon: prometheus]
+    Grafana [icon: grafana]
+  }
+  
+}
+Azure Kubernetes Service -- Virtual network
+Azure Monitor -- Virtual network
+Azure Key Vault -- Virtual network
+Observability and Monitoring -- Back-end services
+
+HPS Client app > API GATEWAY > 
+Back-end services
+API GATEWAY > Azure Active Directory
+
+Azure Synapse Analytics > Azure Data Warehouse
+// Back-end services > Azure Data Lake
+Azure Synapse Analytics > Azure Data Lake
+HELM > Virtual network:Package Manager
+CICD --> Azure Container Registry:Docker push
+Virtual network --> Azure Container Registry:Docker pull
+Kubernetes cluster > Azure Active Directory:Role-based access control
+
+// Pod1 > Pod2 > Azure Synapse Analytics 
+Pod1 > Pod3
+Pod1 > Azure Synapse Analytics 
+Pod2 > Pod3
+Pod2 > Azure Synapse Analytics 
+Pod3 --> Pod4:Seach queries
+Pod3 > Azure Data Warehouse

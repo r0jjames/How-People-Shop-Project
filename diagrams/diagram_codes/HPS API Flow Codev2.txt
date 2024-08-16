@@ -1,0 +1,75 @@
+title Sequence Diagram - “How People Shop” (HPS) Product
+
+User [icon: user, color: blue]
+Frontend [icon: angular, color: lightblue]
+API Gateway [icon: azure-application-gateways, color: blue]
+Customers Experience Service [icon: k8s-pod, color: green]
+Products Service [icon: k8s-pod, color: orange]
+Insights Service [icon: k8s-pod, color: yellow]
+Azure Synapse Analytics [icon: azure-synapse-analytics, color: teal]
+Azure Data Lake [icon: azure-data-lake, color: darkblue]
+Azure Data Warehouse [icon: azure-synapse-analytics, color: darkgreen]
+Elasticsearch Service [icon: k8s-pod, color: brown]
+Elasticsearch [icon: elasticsearch, color: brown]
+
+// User interaction with Front-End UI
+User > Frontend: Perform actions (login, view shopping insights, trends, filter, patterns)
+Frontend > API Gateway: Send HTTP/HTTPS requests
+
+// API Gateway routes requests with authentication
+API Gateway > Customers Experience Service: Route to Customers Exp Service (with auth)
+API Gateway > Products Service: Route to Products Service (with auth)
+
+// Customer Experience Service Requests
+Customers Experience Service > Insights Service: Request customer insights
+Customers Experience Service > Azure Synapse Analytics: Request customer behavior analysis
+Azure Synapse Analytics > Customers Experience Service: Provide behavior analysis results
+
+// Product Service Requests
+Products Service > Insights Service: Request product insights
+Products Service > Azure Synapse Analytics: Request product recommendations
+Azure Synapse Analytics > Products Service: Provide product recommendations
+
+// Data Processing and Analytics
+loop [label: Data processing, color: lightgray] {
+  Azure Synapse Analytics > Azure Data Lake: Fetch raw data (e.g., customer activity logs, product metadata)
+  Azure Synapse Analytics > Azure Data Warehouse: Store processed data (e.g., aggregated insights, recommendations)
+}
+
+// Insights Generation
+Insights Service > Azure Data Warehouse: Query insights data
+Insights Service > Customers Experience Service: Send customer insights (e.g., behavior trends, feedback analysis)
+Insights Service > Products Service: Send products insights (e.g., sales performance, user ratings)
+Products Service > Frontend: Send product insights
+Frontend > User: Display insights (How People Shop)
+
+// Elasticsearch Indexing and Search Capabilities
+loop [label: Indexing Data, color: lightgray] {
+  Insights Service > Elasticsearch Service: Index customer feedback (e.g., feedback data)
+  Insights Service > Elasticsearch Service: Index product reviews (e.g., review data)
+  Insights Service > Elasticsearch Service: Index processed insights data (e.g., aggregated insights, trends)
+}
+
+// Search Operations
+User > Frontend: Search customer experience or product reviews
+Frontend > API Gateway: Send search query
+API Gateway > Elasticsearch Service: Route search query
+Elasticsearch Service > Elasticsearch: Process search query
+Elasticsearch > Elasticsearch Service: Return search results
+Elasticsearch Service > API Gateway: Send search results
+API Gateway > Frontend: Send search results
+Frontend > User: Display search results
+
+// Reporting and Business Intelligence
+// par [label: Dashboard / Reporting, color: lightgray] {
+//   Customers Experience Service > Elasticsearch: Access for business intelligence
+//   Products Service > Elasticsearch: Access for reporting and analytics
+// }
+
+// Additional Use Cases (Optional)
+// note right of Elasticsearch
+//   Consider integrating advanced search features:
+//   - Autocomplete
+//   - Suggestions
+//   - Faceted search
+// end note

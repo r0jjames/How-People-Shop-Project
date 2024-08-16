@@ -1,7 +1,12 @@
 package com.hps.customers_experience.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+@Schema(
+        name = "Customer Experience",
+        description = "Schema to hold customers analytics information"
+)
 @Data
 public class CustomerExperiencesDto {
     private Long id;

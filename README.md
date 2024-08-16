@@ -264,7 +264,7 @@ Retrieve details on customer experiences.
 | **Authorization**    | Azure Active Directory (AAD)     | Implements role-based access control (RBAC) to manage permissions. |
 | **Secret Management**| Azure Key Vault                   | Stores and manages secrets securely to protect sensitive information. |
 | **Data Encryption**  | Azure Key Vault, Azure Storage Encryption | Azure Key Vault manages encryption keys, while Azure Storage Encryption encrypts data at rest and in transit for services including Azure Data Lake and Azure Synapse Analytics.. |
-| **Data Masking**     | Azure Synapse Analytics, Azure Data Factorye | Applies data masking to obscure sensitive information from unauthorized users, providing dynamic data masking capabilities.  |
+| **Data Masking**     | Azure Synapse Analytics, Azure Data Factory | Applies data masking to obscure sensitive information from unauthorized users, providing dynamic data masking capabilities.  |
 | **Access Control**   | Azure Active Directory (AAD), Azure Managed Identities | Azure AAD handles user and application authentication and RBAC. Managed Identities provide secure, automated authentication for Azure resources.. |
 
 ### **Data Flow and Integration**
