@@ -1,13 +1,13 @@
-# How People Shop (HPS) Product - Technical Assignment
+# How People Shop (HPS) Product
 
 ## Summary
 
-The "How People Shop" (HPS) product is a web-based solution designed to collect, analyze, and share insights on customer shopping behaviors. This tool will support IKEA’s decision-making by providing valuable data on consumer interactions, enhancing the customer experience, and driving strategic decisions.
+The "How People Shop" (HPS) product is a web-based solution designed to collect, analyze, and share insights on customer shopping behaviors. This tool will support the organization’s decision-making by providing valuable data on consumer interactions, enhancing the customer experience, and driving strategic decisions.
 decision-making.
 
 ## Background
 
-Understanding customer shopping behaviors is crucial for improving IKEA’s customer experience and guiding data-driven decisions. The HPS product will gather and analyze data on shopping interactions with IKEA products and services to support an enhanced omnichannel experience.
+Understanding customer shopping behaviors is crucial for improving customer experience and guiding data-driven decisions. The HPS product will gather and analyze data on shopping interactions with the organization's products and services to support an enhanced omnichannel experience.
 
 
 ## Design
@@ -26,14 +26,14 @@ Success will be measured by the following criteria:
 - Accurate data collection and storage of customer shopping data
 - Efficient processing and real-time insights generation
 - Secure and scalable architecture
-- Positive feedback from decision-makers within IKEA on the usability and insights provided by the product.
+- Positive feedback from decision-makers within the organization on the usability and insights provided by the product.
 
 ## Goals
 
-- Store and catalogue existing knowledge about customer shopping experiences.
+- Store and catalog existing knowledge about customer shopping experiences.
 - Make the data easily searchable and accessible from within the HPS web-based product.
 - Drive consumer-centric decision-making by providing insights into customer needs and behaviors.
-- Strengthen the IKEA concept and ensure business growth.
+- Strengthen the organization concept and ensure business growth.
 
 ## Table of Contents
 
@@ -116,7 +116,7 @@ The HPS Data Model captures the various entities and their relationships involve
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/r0jjames/IKEA-How-People-Shop-Project.git
+    git clone https://github.com/r0jjames/How-People-Shop-Project.git
     cd customers-experience
     ```
 2. Run DB in the Docker container:
